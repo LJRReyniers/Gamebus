@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private Animator _animation;
+    [SerializeField] private float _damageAmount;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
@@ -68,9 +69,18 @@ public class Movement : MonoBehaviour
         _movementInput = inputValue.Get<Vector2>();
     }
 
-    private void OnAttack(InputAction inputAction)
+    public void OnAttack(InputAction inputAction)
     {
         _attackButtonPressed = inputAction.IsPressed();
         _animation.SetBool("Attack_Button_Pressed", inputAction.IsPressed());
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            var healthController = collision.gameObject.GetComponent<Health_Controller>();
+
+            healthController.TakeDamage(_damageAmount);
+        }
     }
 }
