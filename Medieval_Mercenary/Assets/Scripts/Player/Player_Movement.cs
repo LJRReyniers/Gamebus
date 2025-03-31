@@ -6,13 +6,14 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private Animator _animation;
-    [SerializeField] private float _damageAmount;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
     private InputAction _attackAction;
+
+    [SerializeField] private BoxCollider2D _weaponCollider;
 
     private bool _attackButtonPressed = false;
 
@@ -31,6 +32,11 @@ public class Player_Movement : MonoBehaviour
         if (_attackButtonPressed)
         {
             _animation.Play("Slash");
+            _weaponCollider.enabled = true;
+        }
+        else
+        {
+            _weaponCollider.enabled = false;
         }
 
         OnAttack(_attackAction);
@@ -73,14 +79,5 @@ public class Player_Movement : MonoBehaviour
     {
         _attackButtonPressed = inputAction.IsPressed();
         _animation.SetBool("Attack_Button_Pressed", inputAction.IsPressed());
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            var healthController = collision.gameObject.GetComponent<Health_Controller>();
-
-            healthController.TakeDamage(_damageAmount);
-        }
     }
 }

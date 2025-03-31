@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Enemy_Attack : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField] private float _damageAmount;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "Player" && collision.collider.gameObject.tag != "Weapon")
+        if (collision.gameObject.tag == "Enemy")
         {
             var healthController = collision.gameObject.GetComponent<Health_Controller>();
 
