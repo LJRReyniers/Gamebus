@@ -13,7 +13,7 @@ public class Player_Movement : MonoBehaviour
     private Vector2 _movementInputSmoothVelocity;
     private InputAction _attackAction;
 
-    [SerializeField] private BoxCollider2D _weaponCollider;
+    [SerializeField] private BoxCollider2D _weaponCollider; //make it weapon gameobject
 
     private bool _attackButtonPressed = false;
 
@@ -31,6 +31,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (_attackButtonPressed)
         {
+            //check which weapon.type it is
             _animation.Play("Slash");
             _weaponCollider.enabled = true;
         }
