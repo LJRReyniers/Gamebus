@@ -5,29 +5,29 @@ public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private Animator _animation;
+    //[SerializeField] private Animator _animation;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
-    private InputAction _attackAction;
+    //private InputAction _attackAction;
 
-    [SerializeField] private BoxCollider2D _weaponCollider; //make it weapon gameobject
+    //[SerializeField] private BoxCollider2D _weaponCollider; //make it weapon gameobject
 
-    private bool _attackButtonPressed = false;
+    //private bool _attackButtonPressed = false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    /*private void Start()
     {
         _attackAction = InputSystem.actions.FindAction("Attack");
-    }
+    }*/
 
-    private void Update()
+    /*private void Update()
     {
         if (_attackButtonPressed)
         {
@@ -41,7 +41,7 @@ public class Player_Movement : MonoBehaviour
         }
 
         OnAttack(_attackAction);
-    }
+    }*/
 
     private void FixedUpdate()
     {
@@ -65,7 +65,7 @@ public class Player_Movement : MonoBehaviour
         if (_movementInput != Vector2.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _smoothedMovementInput);
-            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
 
             _rigidbody.MoveRotation(rotation);
         }
@@ -76,9 +76,9 @@ public class Player_Movement : MonoBehaviour
         _movementInput = inputValue.Get<Vector2>();
     }
 
-    public void OnAttack(InputAction inputAction)
+    /*public void OnAttack(InputAction inputAction)
     {
         _attackButtonPressed = inputAction.IsPressed();
         _animation.SetBool("Attack_Button_Pressed", inputAction.IsPressed());
-    }
+    }*/
 }
