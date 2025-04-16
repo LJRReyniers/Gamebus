@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
     public static SceneController instance;
     //[SerializeField] Animator transitionAnim;
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance == null)
         {
@@ -18,7 +18,7 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public void NextScene()
     {
