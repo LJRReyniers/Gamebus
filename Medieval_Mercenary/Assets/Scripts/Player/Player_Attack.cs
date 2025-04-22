@@ -8,7 +8,6 @@ public class Player_Attack : MonoBehaviour
     private InputAction _attackAction;
     private string _attackType;
 
-    //[SerializeField] private Weapon _weapon;
     private bool _attackButtonPressed = false;
     public UnityEvent playerAttack_Event;
 
@@ -29,13 +28,9 @@ public class Player_Attack : MonoBehaviour
         if (_attackButtonPressed && playerAttack_Event != null && _canAttack)
         {
             _animation.Play(_attackType);
-            //_weapon.GetComponent<BoxCollider2D>().enabled = true;
+
             playerAttack_Event.Invoke();
             _canAttack = false;
-        }
-        else
-        {
-            //_weapon.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         OnAttack(_attackAction);
@@ -44,7 +39,6 @@ public class Player_Attack : MonoBehaviour
     public void OnAttack(InputAction inputAction)
     {
         _attackButtonPressed = inputAction.IsPressed();
-        //_animation.SetBool("Attack_Button_Pressed", inputAction.IsPressed());
     }
 
     public void CanAttack()
