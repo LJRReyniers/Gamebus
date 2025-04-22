@@ -4,12 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public static SceneController Instance { get; private set; }
     [SerializeField] private float _sceneFadeDuration;
     private SceneFade _sceneFade;
 
     private void Awake()
     {
         _sceneFade = GetComponentInChildren<SceneFade>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("SceneController initialized");
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            Debug.LogWarning("Duplicate SceneController destroyed");
+        }
     }
 
     private IEnumerator Start()

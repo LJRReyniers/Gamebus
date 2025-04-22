@@ -13,8 +13,6 @@ public class Bow : Weapon
 
     void Start()
     {
-        this._damageAmount = 20f;
-        this._weaponType = "Shot";
         player_Event = GetComponentInParent<Player_Attack>().playerAttack_Event;
         player_Event.AddListener(Attack);
     }

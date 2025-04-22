@@ -33,10 +33,10 @@ public class Player_Attack : MonoBehaviour
             _canAttack = false;
         }
 
-        OnAttack(_attackAction);
+        OnA(_attackAction);
     }
 
-    public void OnAttack(InputAction inputAction)
+    public void OnA(InputAction inputAction)
     {
         _attackButtonPressed = inputAction.IsPressed();
     }

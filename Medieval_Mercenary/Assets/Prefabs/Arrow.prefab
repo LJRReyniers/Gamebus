@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4932193866858847249}
   - component: {fileID: 6809252846185070978}
   - component: {fileID: 3165997328616897395}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arrow
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330c07cefba2e2a45a6b3ca42bff5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 0
+  _damageAmount: 20
   _weaponType: 
 --- !u!1 &8091568662642587785
 GameObject:
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3479941609092729133}
   - component: {fileID: 1245031177931892179}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

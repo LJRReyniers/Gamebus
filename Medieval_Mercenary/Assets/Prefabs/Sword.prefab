@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageAmount: 20
+  _weaponType: Slash
   _animation: {fileID: -1373463028800285220}
 --- !u!95 &-1373463028800285220
 Animator:

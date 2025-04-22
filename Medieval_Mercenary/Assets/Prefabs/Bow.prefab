@@ -181,8 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66caad33d51c2b04ab472a696aee81bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 0
-  _weaponType: 
+  _damageAmount: 20
+  _weaponType: Shot
   _arrowPrefab: {fileID: 7748894590801410095, guid: 4a5d2fbdaacbf1d49a681a73d1c1d5c5, type: 3}
   _arrowSpeed: 10
   _arrowOffset: {fileID: 1443552114497220613}
