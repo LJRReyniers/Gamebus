@@ -8,7 +8,7 @@ public class SceneFade : MonoBehaviour
 
     private void Awake()
     {
-        _sceneFadeImage= GetComponent<Image>();
+        _sceneFadeImage = GetComponent<Image>();
     }
 
     public IEnumerator FadeInCoroutine(float duration)
@@ -17,7 +17,7 @@ public class SceneFade : MonoBehaviour
         Color targetColor = new Color(_sceneFadeImage.color.r, _sceneFadeImage.color.g, _sceneFadeImage.color.b, 0);
 
         yield return FadeCoroutine(startColor, targetColor, duration);
-
+        //Debug.Log("Fading in");
         gameObject.SetActive(false);
     }
 
@@ -27,7 +27,7 @@ public class SceneFade : MonoBehaviour
         Color targetColor = new Color(_sceneFadeImage.color.r, _sceneFadeImage.color.g, _sceneFadeImage.color.b, 1);
 
         gameObject.SetActive(true);
-
+        //Debug.Log("Fading out");
         yield return FadeCoroutine(startColor, targetColor, duration);
     }
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CharacterBuilder : MonoBehaviour
 {
+    //[SerializeField] private SceneController _sceneController;
+
     public void EquipWeapon(string weapon)
     {
         if (WeaponManager.Instance.SelectWeapon(weapon))
@@ -14,6 +16,9 @@ public class CharacterBuilder : MonoBehaviour
 
     public void Dashboard()
     {
-        SceneController.Instance.loadScene(0);
+        //SceneController.Instance.loadScene(0);
+        //_sceneController.loadScene(0);
+        var handler = FindAnyObjectByType<SceneController>();
+        handler.loadScene(0);
     }
 }

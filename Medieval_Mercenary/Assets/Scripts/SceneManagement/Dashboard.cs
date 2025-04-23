@@ -7,11 +7,13 @@ public class Dashboard : MonoBehaviour
     public void CharacterBuilder()
     {
         SceneController.Instance.loadScene(1);
+        //_sceneController.loadScene(1);
     }
 
     public void Level1()
     {
         SceneController.Instance.loadScene(2);
+        //_sceneController.loadScene(2);
     }
 
     //public void Level2() { }

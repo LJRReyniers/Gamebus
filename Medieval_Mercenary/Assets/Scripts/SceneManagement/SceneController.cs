@@ -53,6 +53,22 @@ public class SceneController : MonoBehaviour
         return weapon != null;
     }*/
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"Scene loaded: {scene.name}");
+        StartCoroutine(Start());
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private IEnumerator LoadSceneByIndex(int index)
     {
         yield return _sceneFade.FadeOutCoroutine(_sceneFadeDuration);

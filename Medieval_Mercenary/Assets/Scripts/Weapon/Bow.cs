@@ -33,12 +33,12 @@ public class Bow : Weapon
 
     IEnumerator AttackCollision()
     {
-        this.GetComponent<BoxCollider2D>().enabled = true;
+        //this.GetComponent<BoxCollider2D>().enabled = true;
 
         yield return new WaitForSeconds(0.5f);
         FireArrow();
 
-        this.GetComponent<BoxCollider2D>().enabled = false;
+        //this.GetComponent<BoxCollider2D>().enabled = false;
 
         yield return 0;
     }

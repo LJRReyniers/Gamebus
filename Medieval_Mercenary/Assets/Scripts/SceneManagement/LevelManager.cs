@@ -13,6 +13,11 @@ public class LevelManager : MonoBehaviour
             // Initialize level with selected weapon
             InitializeLevel(weapon);
         }
+        else
+        {
+            weapon = "Empty";
+            InitializeLevel(weapon);
+        }
     }
 
     protected virtual void InitializeLevel(string weapon)
