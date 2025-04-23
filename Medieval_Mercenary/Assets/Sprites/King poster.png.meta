@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9ed0dacef0ab5c646838b48c254ecdce
+guid: f8e84a25a31a4ea4aaa47fae2eafbb93
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3427114271967980436
-    second: Character_0
+      213: -6524130879320675299
+    second: King poster_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_0
+      name: King poster_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 19
-        width: 18
-        height: 28
+        x: 15
+        y: 0
+        width: 32
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49ba251d54e8f8f20800000000000000
-      internalID: 3427114271967980436
+      spriteID: d1c2fe51881a575a0800000000000000
+      internalID: -6524130879320675299
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Character_0: 3427114271967980436
+      King poster_0: -6524130879320675299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
