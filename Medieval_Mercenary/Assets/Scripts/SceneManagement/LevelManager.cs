@@ -40,25 +40,25 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void Dashboard()
+    /*public void Dashboard()
     {
         //var wallet = FindAnyObjectByType<Wallet>();
         Wallet.Instance.AddCoins(100);
         
         //var handler = FindAnyObjectByType<SceneController>();
         SceneController.Instance.loadScene(0);
-    }
+    }*/
 
     public void Win()
     {
-        Wallet.Instance.AddCoins(100);
+        Wallet.Instance.AddCoins(GlobalManager.Instance.GetCurrentReward(SceneController.Instance.GetSceneName()));
         
         SceneController.Instance.loadScene(0);
     }
 
     public void Lose()
     {
-        //GlobalManager.Instance.LessenReward();
+        GlobalManager.Instance.LessenReward(SceneController.Instance.GetSceneName());
 
         SceneController.Instance.loadScene(0);
     }
