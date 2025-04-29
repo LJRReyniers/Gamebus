@@ -39,4 +39,10 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+    public void Dashboard()
+    {
+        var handler = FindAnyObjectByType<SceneController>();
+        handler.loadScene(0);
+    }
 }
