@@ -5,43 +5,16 @@ public class Player_Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
-    //[SerializeField] private Animator _animation;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
-    //private InputAction _attackAction;
-
-    //[SerializeField] private BoxCollider2D _weaponCollider; //make it weapon gameobject
-
-    //private bool _attackButtonPressed = false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
-
-    /*private void Start()
-    {
-        _attackAction = InputSystem.actions.FindAction("Attack");
-    }*/
-
-    /*private void Update()
-    {
-        if (_attackButtonPressed)
-        {
-            //check which weapon.type it is
-            _animation.Play("Slash");
-            _weaponCollider.enabled = true;
-        }
-        else
-        {
-            _weaponCollider.enabled = false;
-        }
-
-        OnAttack(_attackAction);
-    }*/
 
     private void FixedUpdate()
     {
@@ -75,10 +48,4 @@ public class Player_Movement : MonoBehaviour
     {
         _movementInput = inputValue.Get<Vector2>();
     }
-
-    /*public void OnAttack(InputAction inputAction)
-    {
-        _attackButtonPressed = inputAction.IsPressed();
-        _animation.SetBool("Attack_Button_Pressed", inputAction.IsPressed());
-    }*/
 }

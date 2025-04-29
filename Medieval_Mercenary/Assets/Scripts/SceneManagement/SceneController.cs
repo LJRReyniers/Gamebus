@@ -32,26 +32,8 @@ public class SceneController : MonoBehaviour
 
     public void loadScene(int index)
     {
-        /*if (!ValidateWeaponState())
-        {
-            Debug.LogError("Cannot load scene: Weapon state invalid");
-            return;
-        }*/
-
         StartCoroutine(LoadSceneByIndex(index));
     }
-
-    /*private bool ValidateWeaponState()
-    {
-        if (WeaponManager.Instance == null)
-        {
-            Debug.LogError("WeaponManager instance missing");
-            return false;
-        }
-
-        var weapon = WeaponManager.Instance.GetSelectedWeapon();
-        return weapon != null;
-    }*/
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

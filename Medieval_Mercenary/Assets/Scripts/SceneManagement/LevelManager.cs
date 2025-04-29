@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
         var weapon = WeaponManager.Instance.GetSelectedWeapon();
         if (weapon != null)
         {
-            // Initialize level with selected weapon
             InitializeLevel(weapon);
         }
         else
@@ -22,32 +21,20 @@ public class LevelManager : MonoBehaviour
 
     protected virtual void InitializeLevel(string weapon)
     {
-        // Override in derived classes for specific initialization
         foreach (var w in _availableWeapons)
         {
             if (w.name == weapon)
             {
-                //Debug.Log(GameObject.Find(weapon));
                 GameObject.Find(w.name).SetActive(true);
                 w.enabled = true;
             }
             else
             {
-                //Debug.Log(GameObject.Find(weapon));
                 GameObject.Find(w.name).SetActive(false);
                 w.enabled = false;
             }
         }
     }
-
-    /*public void Dashboard()
-    {
-        //var wallet = FindAnyObjectByType<Wallet>();
-        Wallet.Instance.AddCoins(100);
-        
-        //var handler = FindAnyObjectByType<SceneController>();
-        SceneController.Instance.loadScene(0);
-    }*/
 
     public void Win()
     {

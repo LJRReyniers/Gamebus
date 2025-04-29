@@ -7,8 +7,8 @@ public class GlobalManager : MonoBehaviour
 {
     public static GlobalManager Instance { get; private set; }
     private float _rewardAmount;
-    [SerializeField] private float initialBaseReward = 100f; // Default starting reward
-    [SerializeField] private float reductionPercentage = 20f; // Amount to reduce per attempt
+    [SerializeField] private float initialBaseReward = 100f;
+    [SerializeField] private float reductionPercentage = 20f;
 
     private Dictionary<string, LevelRewardData> rewards = new Dictionary<string, LevelRewardData>();
     private void Awake()
@@ -24,8 +24,6 @@ public class GlobalManager : MonoBehaviour
             Destroy(gameObject);
             Debug.LogWarning("Duplicate GlobalManager destroyed");
         }
-
-        SetRewardAmount("Level 1");
     }
 
     public float GetRewardAmount(string sceneName)
@@ -38,26 +36,6 @@ public class GlobalManager : MonoBehaviour
         if (!rewards.ContainsKey(sceneName))
         {
             rewards.Add(sceneName, new LevelRewardData(initialBaseReward));
-        }
-
-        if (rewards.TryGetValue(sceneName, out LevelRewardData data))
-        {
-            data.baseReward = initialBaseReward;
-        }
-
-        foreach (var reward in rewards)
-        {
-            Debug.Log(reward.Value.currentMultiplier);
-        }
-    }
-
-    private void Initialize()
-    {
-        // Load saved rewards or initialize new ones
-        string scene = SceneController.Instance.GetSceneName();
-        if (!rewards.ContainsKey(scene))
-        {
-            rewards.Add(scene, new LevelRewardData(initialBaseReward));
         }
     }
 
@@ -86,7 +64,7 @@ public class GlobalManager : MonoBehaviour
             data.attempts++;
             float reduction = initialBaseReward * (reductionPercentage / 100f);
             data.currentMultiplier = Mathf.Max(0f,
-                1f - (/*(data.attempts - 1) **/ reduction / initialBaseReward));
+                1f - (reduction / initialBaseReward));
         }
     }
 

@@ -28,17 +28,12 @@ public class Bow : Weapon
     private void Attack()
     {
         StartCoroutine(AttackCollision());
-        //FireArrow();
     }
 
     IEnumerator AttackCollision()
     {
-        //this.GetComponent<BoxCollider2D>().enabled = true;
-
         yield return new WaitForSeconds(0.5f);
         FireArrow();
-
-        //this.GetComponent<BoxCollider2D>().enabled = false;
 
         yield return 0;
     }

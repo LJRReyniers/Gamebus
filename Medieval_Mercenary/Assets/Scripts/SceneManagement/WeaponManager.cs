@@ -44,26 +44,4 @@ public class WeaponManager : MonoBehaviour
 
             return selectedWeapon;
         }
-
-        /*private void OnEnable()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log($"Scene loaded: {scene.name}");
-            NotifySceneLoaded(scene);
-        }
-
-        protected virtual void NotifySceneLoaded(Scene scene)
-        {
-            // Override in derived classes for scene-specific logic
-        }*/
-
 }
