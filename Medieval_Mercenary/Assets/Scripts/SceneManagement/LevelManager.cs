@@ -42,7 +42,24 @@ public class LevelManager : MonoBehaviour
 
     public void Dashboard()
     {
-        var handler = FindAnyObjectByType<SceneController>();
-        handler.loadScene(0);
+        //var wallet = FindAnyObjectByType<Wallet>();
+        Wallet.Instance.AddCoins(100);
+        
+        //var handler = FindAnyObjectByType<SceneController>();
+        SceneController.Instance.loadScene(0);
+    }
+
+    public void Win()
+    {
+        Wallet.Instance.AddCoins(100);
+        
+        SceneController.Instance.loadScene(0);
+    }
+
+    public void Lose()
+    {
+        //GlobalManager.Instance.LessenReward();
+
+        SceneController.Instance.loadScene(0);
     }
 }
