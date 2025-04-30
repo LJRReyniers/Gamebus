@@ -27,7 +27,10 @@ public class Wallet : MonoBehaviour
 
     public void RemoveCoins(float amount)
     {
-        _walletContent -= amount;
+        if (_walletContent >= amount)
+        {
+            _walletContent -= amount;
+        }
     }
 
     public float GetCoinCount()

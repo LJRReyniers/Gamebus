@@ -7,10 +7,13 @@ public class GlobalManager : MonoBehaviour
 {
     public static GlobalManager Instance { get; private set; }
     private float _rewardAmount;
-    [SerializeField] private float initialBaseReward = 100f;
-    [SerializeField] private float reductionPercentage = 20f;
+    [SerializeField] private float _initialBaseReward = 100f;
+    [SerializeField] private float _reductionPercentage = 20f;
+
+    [SerializeField] private float _shopItemPrice = 100f;
 
     private Dictionary<string, LevelRewardData> rewards = new Dictionary<string, LevelRewardData>();
+    private Dictionary<GameObject, ShopItem> items = new Dictionary<GameObject, ShopItem>();
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +29,7 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
+    //Reward
     public float GetRewardAmount(string sceneName)
     {
         return _rewardAmount;
@@ -35,7 +39,7 @@ public class GlobalManager : MonoBehaviour
     {
         if (!rewards.ContainsKey(sceneName))
         {
-            rewards.Add(sceneName, new LevelRewardData(initialBaseReward));
+            rewards.Add(sceneName, new LevelRewardData(_initialBaseReward));
         }
     }
 
@@ -62,9 +66,9 @@ public class GlobalManager : MonoBehaviour
         if (rewards.TryGetValue(sceneName, out LevelRewardData data))
         {
             data.attempts++;
-            float reduction = initialBaseReward * (reductionPercentage / 100f);
+            float reduction = _initialBaseReward * (_reductionPercentage / 100f);
             data.currentMultiplier = Mathf.Max(0f,
-                1f - (reduction / initialBaseReward));
+                1f - (reduction / _initialBaseReward));
         }
     }
 
@@ -72,5 +76,45 @@ public class GlobalManager : MonoBehaviour
     {
         return rewards.TryGetValue(sceneName, out LevelRewardData data) &&
                data.attempts > 0;
+    }
+
+
+    //Shop item
+    public void SetItemPrice(GameObject item)
+    {
+        if (!items.ContainsKey(item))
+        {
+            items.Add(item, new ShopItem(_shopItemPrice));
+        }
+    }
+
+    public bool GetCurrentItemState(GameObject item)
+    {
+        if (items.TryGetValue(item, out ShopItem data))
+        {
+            return data.GetItemState();
+        }
+        return false;
+    }
+
+    public void BuyShopItem(GameObject item)
+    {
+        if (items.TryGetValue(item, out ShopItem data))
+        {
+            if (Wallet.Instance.GetCoinCount() >= data.price)
+            {
+                Wallet.Instance.RemoveCoins(data.price);
+                data.UnlockItem();
+            }
+        }
+    }
+
+    public float GetItemPrice(GameObject item)
+    {
+        if (items.TryGetValue(item, out ShopItem data))
+        {
+            return data.price;
+        }
+        return 0;
     }
 }

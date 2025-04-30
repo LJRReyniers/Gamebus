@@ -20,7 +20,7 @@ public class Dashboard : MonoBehaviour
         foreach (var level in levels)
         {
             GlobalManager.Instance.SetRewardAmount(level.name);
-            GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "$" + $"{GlobalManager.Instance.GetCurrentReward(level.name)}";
+            GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"$ {GlobalManager.Instance.GetCurrentReward(level.name)}";
         }
     }
 
