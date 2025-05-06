@@ -27,7 +27,7 @@ public class CharacterBuilder : MonoBehaviour
 
     public void Dashboard()
     {
-        SceneController.Instance.loadScene(0);
+        SceneController.Instance.loadScene(1);
     }
 
     private void SetCoinAmount()
@@ -39,7 +39,7 @@ public class CharacterBuilder : MonoBehaviour
     {
         foreach (var item in shopItems)
         {
-            GlobalManager.Instance.SetItemPrice(item);
+            GlobalManager.Instance.SetItemPrice(item.name);
         }
     }
 
@@ -47,15 +47,12 @@ public class CharacterBuilder : MonoBehaviour
     {
         foreach (var item in shopItems)
         {
-            Debug.Log($"{item}: {GlobalManager.Instance.GetCurrentItemState(item)}");
-            if (!GlobalManager.Instance.GetCurrentItemState(item))
+            if (!GlobalManager.Instance.GetCurrentItemState(item.name))
             {
-                //item.GetComponent<Button>().interactable = false;
                 item.GetComponent<Image>().color = Color.black;
             }
             else
             {
-                //item.GetComponent<Button>().interactable = true;
                 item.GetComponent<Image>().color = Color.white;
             }
         }
@@ -75,7 +72,7 @@ public class CharacterBuilder : MonoBehaviour
 
     public void BuyItem()
     {
-        GlobalManager.Instance.BuyShopItem(_selectedShopItem);
+        GlobalManager.Instance.BuyShopItem(_selectedShopItem.name);
         _popupScreen.SetActive(false);
         SetCoinAmount();
     }
@@ -84,8 +81,8 @@ public class CharacterBuilder : MonoBehaviour
     {
         _selectedShopItem = weapon;
         _popupScreen.SetActive(true);
-        _popupScreen.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Do you want to buy {weapon.name} for $ {GlobalManager.Instance.GetItemPrice(weapon)}?";
-        if (Wallet.Instance.GetCoinCount() < GlobalManager.Instance.GetItemPrice(weapon))
+        _popupScreen.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Do you want to buy {weapon.name} for $ {GlobalManager.Instance.GetItemPrice(weapon.name)}?";
+        if (Wallet.Instance.GetCoinCount() < GlobalManager.Instance.GetItemPrice(weapon.name))
         {
             _popupScreen.GetComponentInChildren<Button>().interactable = false;
         }

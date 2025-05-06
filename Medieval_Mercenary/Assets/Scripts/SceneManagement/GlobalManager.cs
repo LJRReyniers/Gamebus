@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +12,7 @@ public class GlobalManager : MonoBehaviour
     [SerializeField] private float _shopItemPrice = 100f;
 
     private Dictionary<string, LevelRewardData> rewards = new Dictionary<string, LevelRewardData>();
-    private Dictionary<GameObject, ShopItem> items = new Dictionary<GameObject, ShopItem>();
+    private Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
     private void Awake()
     {
         if (Instance == null)
@@ -72,6 +71,14 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
+    public void AddAttempts(string sceneName)
+    {
+        if (rewards.TryGetValue(sceneName, out LevelRewardData data))
+        {
+            data.attempts++;
+        }
+    }
+
     public bool HasAttemptedLevel(string sceneName)
     {
         return rewards.TryGetValue(sceneName, out LevelRewardData data) &&
@@ -80,27 +87,27 @@ public class GlobalManager : MonoBehaviour
 
 
     //Shop item
-    public void SetItemPrice(GameObject item)
+    public void SetItemPrice(string itemName)
     {
-        if (!items.ContainsKey(item))
+        if (!items.ContainsKey(itemName))
         {
             Debug.Log("Adding item");
-            items.Add(item, new ShopItem(_shopItemPrice));
+            items.Add(itemName, new ShopItem(_shopItemPrice));
         }
     }
 
-    public bool GetCurrentItemState(GameObject item)
+    public bool GetCurrentItemState(string itemName)
     {
-        if (items.TryGetValue(item, out ShopItem data))
+        if (items.TryGetValue(itemName, out ShopItem data))
         {
             return data.GetItemState();
         }
         return false;
     }
 
-    public void BuyShopItem(GameObject item)
+    public void BuyShopItem(string itemName)
     {
-        if (items.TryGetValue(item, out ShopItem data))
+        if (items.TryGetValue(itemName, out ShopItem data))
         {
             if (Wallet.Instance.GetCoinCount() >= data.price)
             {
@@ -110,9 +117,9 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
-    public float GetItemPrice(GameObject item)
+    public float GetItemPrice(string itemName)
     {
-        if (items.TryGetValue(item, out ShopItem data))
+        if (items.TryGetValue(itemName, out ShopItem data))
         {
             return data.price;
         }

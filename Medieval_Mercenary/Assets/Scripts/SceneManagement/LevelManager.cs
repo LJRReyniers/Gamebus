@@ -39,14 +39,15 @@ public class LevelManager : MonoBehaviour
     public void Win()
     {
         Wallet.Instance.AddCoins(GlobalManager.Instance.GetCurrentReward(SceneController.Instance.GetSceneName()));
+        GlobalManager.Instance.AddAttempts(SceneController.Instance.GetSceneName());
         
-        SceneController.Instance.loadScene(0);
+        SceneController.Instance.loadScene(1);
     }
 
     public void Lose()
     {
         GlobalManager.Instance.LessenReward(SceneController.Instance.GetSceneName());
 
-        SceneController.Instance.loadScene(0);
+        SceneController.Instance.loadScene(1);
     }
 }

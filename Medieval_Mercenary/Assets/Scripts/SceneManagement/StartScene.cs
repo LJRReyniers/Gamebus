@@ -4,6 +4,6 @@ public class StartScene : MonoBehaviour
 {
     void Start()
     {
-        SceneController.Instance.loadScene(0);
+        SceneController.Instance.loadScene(1);
     }
 }
