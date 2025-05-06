@@ -47,6 +47,7 @@ public class CharacterBuilder : MonoBehaviour
     {
         foreach (var item in shopItems)
         {
+            Debug.Log($"{item}: {GlobalManager.Instance.GetCurrentItemState(item)}");
             if (!GlobalManager.Instance.GetCurrentItemState(item))
             {
                 //item.GetComponent<Button>().interactable = false;

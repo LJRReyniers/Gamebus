@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShopItem : MonoBehaviour
 {
     public float price;
-    public bool unlocked = false;
+    public bool unlocked;
 
     public ShopItem(float cost)
     {

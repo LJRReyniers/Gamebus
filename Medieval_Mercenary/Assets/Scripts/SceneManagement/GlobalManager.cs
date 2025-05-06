@@ -84,6 +84,7 @@ public class GlobalManager : MonoBehaviour
     {
         if (!items.ContainsKey(item))
         {
+            Debug.Log("Adding item");
             items.Add(item, new ShopItem(_shopItemPrice));
         }
     }

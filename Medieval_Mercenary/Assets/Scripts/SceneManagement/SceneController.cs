@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         _sceneFade = GetComponentInChildren<SceneFade>();
-
+        Debug.Log("SCENECONTROLLER AWAKE");
         if (Instance == null)
         {
             Instance = this;
