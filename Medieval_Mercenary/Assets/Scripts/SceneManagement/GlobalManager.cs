@@ -79,10 +79,24 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
+    public void LevelStateChange(string sceneName)
+    {
+        if (rewards.TryGetValue(sceneName, out LevelRewardData data))
+        {
+            data.wonLevel = true;
+        }
+    }
+
     public bool HasAttemptedLevel(string sceneName)
     {
         return rewards.TryGetValue(sceneName, out LevelRewardData data) &&
                data.attempts > 0;
+    }
+
+    public bool HasWonLevel(string sceneName)
+    {
+        return rewards.TryGetValue(sceneName, out LevelRewardData data) &&
+               data.wonLevel;
     }
 
 

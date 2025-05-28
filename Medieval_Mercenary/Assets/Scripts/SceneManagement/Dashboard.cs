@@ -41,7 +41,7 @@ public class Dashboard : MonoBehaviour
     {
         int _previousLevel = levels.IndexOf(level) - 1;
 
-        if (GlobalManager.Instance.HasAttemptedLevel(levels[_previousLevel].name))
+        if (GlobalManager.Instance.HasWonLevel(levels[_previousLevel].name))
         {
             return true;
         }

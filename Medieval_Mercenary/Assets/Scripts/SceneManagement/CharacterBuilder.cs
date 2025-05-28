@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CharacterBuilder : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinAmount;
+    [SerializeField] private TextMeshProUGUI _gemAmount;
     [SerializeField] private List<GameObject> shopItems = new List<GameObject>();
 
     [SerializeField] private GameObject _character;
@@ -16,6 +17,7 @@ public class CharacterBuilder : MonoBehaviour
     private void Start()
     {
         SetCoinAmount();
+        SetGemAmount();
         SetShopItemPrice();
         SetShopItemState();
     }
@@ -33,6 +35,11 @@ public class CharacterBuilder : MonoBehaviour
     private void SetCoinAmount()
     {
         _coinAmount.text = $"{Wallet.Instance.GetCoinCount()}";
+    }
+
+    private void SetGemAmount()
+    {
+        _gemAmount.text = $"{Wallet.Instance.GetGemCount()}";
     }
 
     private void SetShopItemPrice()

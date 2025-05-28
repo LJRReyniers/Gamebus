@@ -4,6 +4,7 @@ public class Wallet : MonoBehaviour
 {
     public static Wallet Instance { get; private set; }
     [SerializeField] private float _walletContent = 0;
+    [SerializeField] private float _gemAmount = 0;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class Wallet : MonoBehaviour
         _walletContent += amount;
     }
 
+    public void AddGems(float amount)
+    {
+        _gemAmount += amount;
+    }
+
     public void RemoveCoins(float amount)
     {
         if (_walletContent >= amount)
@@ -33,8 +39,21 @@ public class Wallet : MonoBehaviour
         }
     }
 
+    public void RemoveGems(float amount) 
+    { 
+        if (_gemAmount >= amount)
+        {
+            _gemAmount -= amount;
+        }
+    }
+
     public float GetCoinCount()
     {
         return _walletContent;
+    }
+
+    public float GetGemCount()
+    {
+        return _gemAmount;
     }
 }

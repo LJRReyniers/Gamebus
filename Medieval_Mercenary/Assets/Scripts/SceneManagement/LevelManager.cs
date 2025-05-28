@@ -39,7 +39,8 @@ public class LevelManager : MonoBehaviour
     public void Win()
     {
         Wallet.Instance.AddCoins(GlobalManager.Instance.GetCurrentReward(SceneController.Instance.GetSceneName()));
-        GlobalManager.Instance.AddAttempts(SceneController.Instance.GetSceneName());
+        //GlobalManager.Instance.AddAttempts(SceneController.Instance.GetSceneName());
+        GlobalManager.Instance.LevelStateChange(SceneController.Instance.GetSceneName());
         
         SceneController.Instance.loadScene(1);
     }
