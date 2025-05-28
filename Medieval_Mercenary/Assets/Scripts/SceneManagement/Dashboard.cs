@@ -5,16 +5,25 @@ using UnityEngine.UI;
 public class Dashboard : MonoBehaviour
 {
     [SerializeField] private List<GameObject> levels = new List<GameObject>();
-
+    [SerializeField] private List<GameObject> _questsList = new List<GameObject>();
+    [SerializeField] private GameObject _popupScreen;
+    
     private void Start()
     {
         SetRewardText();
         SetLevelState();
+
+        SetQuestInformation();
     }
 
     public void CharacterBuilder()
     {
         SceneController.Instance.loadScene(2);
+    }
+
+    public void DailyQuests()
+    {
+        _popupScreen.SetActive(true);
     }
 
     private void SetRewardText()
@@ -36,6 +45,8 @@ public class Dashboard : MonoBehaviour
     { 
         SceneController.Instance.loadScene(4);
     }
+
+    //Levels
 
     public bool IsLevelUnlocked(GameObject level)
     {
@@ -80,5 +91,39 @@ public class Dashboard : MonoBehaviour
         {
             SceneController.Instance.loadScene(_correctBuildIndex);
         }
+    }
+
+    //Quests
+
+    private void SetQuestInformation()
+    {
+        string t = "placeholder";
+        string d = "placeholder";
+        float r = 0f;
+
+        foreach (GameObject quest in _questsList)
+        {
+            foreach (var textField in quest.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                if (textField.name == "Title")
+                {
+                    t = textField.text;
+                }
+                if (textField.name == "Details")
+                {
+                    d = textField.text;
+                }
+                if (textField.name == "Reward")
+                {
+                    r = float.Parse(textField.text);
+                }
+            }
+            GlobalManager.Instance.SetQuestInformationInDictionary(quest.name, t, d, r);
+        }
+    }
+
+    public void QuestCleared(string questName)
+    {
+        GlobalManager.Instance.ClearQuest(questName);
     }
 }

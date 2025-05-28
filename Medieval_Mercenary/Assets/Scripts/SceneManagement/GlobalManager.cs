@@ -10,9 +10,12 @@ public class GlobalManager : MonoBehaviour
     [SerializeField] private float _reductionPercentage = 20f;
 
     [SerializeField] private float _shopItemPrice = 100f;
+    [SerializeField] private float _shopItemGemPrice = 3f;
 
     private Dictionary<string, LevelRewardData> rewards = new Dictionary<string, LevelRewardData>();
     private Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
+    private Dictionary<string, Quest> quests = new Dictionary<string, Quest>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -105,8 +108,8 @@ public class GlobalManager : MonoBehaviour
     {
         if (!items.ContainsKey(itemName))
         {
-            Debug.Log("Adding item");
-            items.Add(itemName, new ShopItem(_shopItemPrice));
+            //Debug.Log("Adding item");
+            items.Add(itemName, new ShopItem(_shopItemPrice, _shopItemGemPrice));
         }
     }
 
@@ -119,7 +122,7 @@ public class GlobalManager : MonoBehaviour
         return false;
     }
 
-    public void BuyShopItem(string itemName)
+    public void BuyShopItemWithCoins(string itemName)
     {
         if (items.TryGetValue(itemName, out ShopItem data))
         {
@@ -131,11 +134,59 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
+    public void BuyShopItemWithGems(string itemName)
+    {
+        if (items.TryGetValue(itemName, out ShopItem data))
+        {
+            if (Wallet.Instance.GetGemCount() >= data.gemPrice)
+            {
+                Wallet.Instance.RemoveGems(data.gemPrice);
+                data.UnlockItem();
+            }
+        }
+    }
+
     public float GetItemPrice(string itemName)
     {
         if (items.TryGetValue(itemName, out ShopItem data))
         {
             return data.price;
+        }
+        return 0;
+    }
+
+    public float GetItemGemPrice(string itemName)
+    {
+        if (items.TryGetValue(itemName, out ShopItem data))
+        {
+            return data.gemPrice;
+        }
+        return 0;
+    }
+
+    //Quests
+    public void SetQuestInformationInDictionary(string questName, string title, string description, float reward)
+    {
+        if (!quests.ContainsKey(questName))
+        {
+            quests.Add(questName, new Quest(title, description, reward));
+        }
+    }
+
+    public void ClearQuest(string questName)
+    {
+        if (quests.TryGetValue(questName, out Quest data))
+        {
+            data.completed = true;
+            Wallet.Instance.AddGems(GetGemReward(questName));
+        }
+    }
+
+    public float GetGemReward(string questName)
+    {
+        if (quests.TryGetValue(questName, out Quest data))
+        {
+            return data.reward;
         }
         return 0;
     }

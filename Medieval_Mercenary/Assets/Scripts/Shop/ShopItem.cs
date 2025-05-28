@@ -5,10 +5,12 @@ public class ShopItem : MonoBehaviour
 {
     public float price;
     public bool unlocked;
+    public float gemPrice;
 
-    public ShopItem(float cost)
+    public ShopItem(float cost, float gemCost)
     {
         price = cost;
+        gemPrice = gemCost;
     }
 
     public void UnlockItem()

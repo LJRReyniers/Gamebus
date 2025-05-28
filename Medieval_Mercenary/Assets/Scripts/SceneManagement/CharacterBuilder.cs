@@ -77,21 +77,44 @@ public class CharacterBuilder : MonoBehaviour
         }
     }
 
-    public void BuyItem()
+    public void BuyItemWithCoins()
     {
-        GlobalManager.Instance.BuyShopItem(_selectedShopItem.name);
+        GlobalManager.Instance.BuyShopItemWithCoins(_selectedShopItem.name);
         _popupScreen.SetActive(false);
         SetCoinAmount();
+    }
+
+    public void BuyItemWithGems()
+    {
+        GlobalManager.Instance.BuyShopItemWithGems(_selectedShopItem.name);
+        _popupScreen.SetActive(false);
+        SetGemAmount();
     }
 
     private void PopupWindow(GameObject weapon)
     {
         _selectedShopItem = weapon;
         _popupScreen.SetActive(true);
-        _popupScreen.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Do you want to buy {weapon.name} for $ {GlobalManager.Instance.GetItemPrice(weapon.name)}?";
-        if (Wallet.Instance.GetCoinCount() < GlobalManager.Instance.GetItemPrice(weapon.name))
+        _popupScreen.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = 
+            $"Do you want to buy {weapon.name} for {GlobalManager.Instance.GetItemPrice(weapon.name)} coins" +
+            $" or {GlobalManager.Instance.GetItemGemPrice(weapon.name)} gems?";
+
+        foreach (var button in _popupScreen.GetComponentsInChildren<Button>())
         {
-            _popupScreen.GetComponentInChildren<Button>().interactable = false;
+            if (button.name == "Buy coin")
+            {
+                if (Wallet.Instance.GetCoinCount() < GlobalManager.Instance.GetItemPrice(weapon.name))
+                {
+                    button.interactable = false;
+                }
+            }
+            if (button.name == "Buy gem")
+            {
+                if (Wallet.Instance.GetGemCount() < GlobalManager.Instance.GetItemGemPrice(weapon.name))
+                {
+                    button.interactable = false;
+                }
+            }
         }
     }
 }
