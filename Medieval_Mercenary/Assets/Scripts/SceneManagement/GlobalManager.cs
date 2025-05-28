@@ -6,7 +6,7 @@ public class GlobalManager : MonoBehaviour
 {
     public static GlobalManager Instance { get; private set; }
     private float _rewardAmount;
-    [SerializeField] private float _initialBaseReward = 100f;
+    [SerializeField] private float _initialBaseReward = 20f;
     [SerializeField] private float _reductionPercentage = 20f;
 
     [SerializeField] private float _shopItemPrice = 100f;
