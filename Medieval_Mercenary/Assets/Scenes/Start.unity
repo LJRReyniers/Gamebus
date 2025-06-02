@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8207534201282749885, guid: 930f5c56c11ab864a8bbae9afacda958, type: 3}
+      propertyPath: _initialBaseReward
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8229901627078385502, guid: 930f5c56c11ab864a8bbae9afacda958, type: 3}
       propertyPath: m_Name
       value: Scene Controller
