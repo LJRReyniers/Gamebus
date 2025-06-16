@@ -19,7 +19,7 @@ Here explainations and class diagrams of the code can be found (It might not be 
 - Wallet.cs
 - WeaponManager.cs
 
-[Enemies]() contains:
+[Enemies](02.%20Enemies.md) contains:
 - Enemy_Attack.cs
 - Enemy_Movement.cs
 - Player_Awareness_Controller.cs
