@@ -34,7 +34,7 @@ Here explainations and class diagrams of the code can be found (It might not be 
 - Health_Controller.cs
 - Invincibility_Controller.cs
 
-[Weapon system]() contains:
+[Weapon system](05.%20Weapon%20system.md) contains:
 - Arrow.cs
 - Bow.cs
 - Swords.cs
