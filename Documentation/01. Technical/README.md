@@ -29,7 +29,7 @@ Here explainations and class diagrams of the code can be found (It might not be 
 - Player_Damaged_Invincibility.cs
 - Player_Movement.cs
 
-[Health system]() contains:
+[Health system](04.%20Health%20system.md) contains:
 - Health_Bar_UI.cs
 - Health_Controller.cs
 - Invincibility_Controller.cs
