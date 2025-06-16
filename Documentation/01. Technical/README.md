@@ -24,7 +24,7 @@ Here explainations and class diagrams of the code can be found (It might not be 
 - Enemy_Movement.cs
 - Player_Awareness_Controller.cs
 
-[Player]() contains:
+[Player](03.%20Player.md) contains:
 - Player_Attack.cs
 - Player_Damaged_Invincibility.cs
 - Player_Movement.cs
