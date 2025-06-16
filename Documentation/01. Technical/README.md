@@ -40,5 +40,5 @@ Here explainations and class diagrams of the code can be found (It might not be 
 - Swords.cs
 - Weapon.cs
 
-[Shop]() contains:
+[Shop](06.%20Shop.md) contains:
 - ShopItem.cs
