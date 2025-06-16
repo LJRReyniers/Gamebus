@@ -6,7 +6,7 @@ Here explainations and class diagrams of the code can be found (It might not be 
 |![UML Medieval Mercenary](https://github.com/user-attachments/assets/93fb724a-b3bd-41dc-aacf-777ca41d1ccc)|
 
 ## Where can scripts be found
-[Scene management]() contains:
+[Scene management](01.%20Scene%20management.md) contains:
 - CharacterBuilder.cs
 - Dashboard.cs
 - GlobalManager.cs
